@@ -1,0 +1,5 @@
+﻿@model WebApplication.SignalR_Data.NotificationInfo
+
+<p>En el día de hoy (@Html.DisplayFor(x => Model.Date.Day)/@Html.DisplayFor(x => Model.Date.Month)/@Html.DisplayFor(x => x.Date.Year) a las @Html.DisplayFor(x => Model.Date.Hour):@Html.DisplayFor(x => Model.Date.Minute)) 
+    <strong>hay @Html.DisplayFor(x => Model.RowCount) reservas hechas.</strong>
+    </p>

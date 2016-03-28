@@ -1,0 +1,31 @@
+﻿@using WebApplication.Models
+@model ReservationViewModel
+
+@{
+    ViewBag.Title = "Reserva creada";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body>
+
+    @RenderPage("~/Views/Shared/_Navbar.cshtml")
+
+    <div id="wrap">
+
+        <h1>Aplicación de Reserva de Mesas</h1>
+
+        <div id="content">
+            @using(Html.BeginForm("ReservationError", "Reservation", FormMethod.Post, new { id = "reservationError" }))
+            {
+            <p>Ha ocurrido un error al intentar confirmar la reserva. Es posible que la mesa elegida en el horario deseado ya esté reservada.</p>
+
+            <div class="returnToBookingCreation">
+                <button type="submit" id="returnToBookingCreationButton">Volver a la creación de reservas</button>
+            </div>
+            }
+        </div>
+
+
+
+    </div>
+
+</body>

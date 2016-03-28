@@ -1,0 +1,115 @@
+﻿@using WebApplication.Models
+@model ReservationViewModel
+
+@{
+    ViewBag.Title = "Creación de Reserva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Content/customcss/formlayout.css");
+    @Styles.Render("~/Content/themes/base/css");
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/Scripts/ReservationCreate.js");
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/Scripts/jquery.datetimepicker.js");
+}
+
+<head>
+    <title>@ViewBag.Title</title>
+    <style>
+      /*.saleChannel
+        {
+            margin-top: 12px;
+        }
+
+        .scPhone, .scName
+        {
+            display: none;
+        }
+
+        .scWebsite, .scPhone, .scName
+        {
+            margin-top: 5px;
+        } */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+    </style>
+</head>
+<body>
+
+    @RenderPage("~/Views/Shared/_Navbar.cshtml")
+    <script src="~/scripts/jquery-2.1.1.min.js"></script>
+    <script src="~/scripts/jquery.signalr-2.2.0.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <div id="wrap">
+
+        <h1>Creación de Reserva</h1>
+
+        <div id="content">
+            @using(Html.BeginForm("ReservationRetrieve", "Reservation", FormMethod.Post, new { id = "reservationForm" }))
+            {
+            <form>
+
+                <label>
+                    <span>Fecha y Horario(*)</span>
+                    <input type="text" id="date" name="Date" class="date" readonly required/>
+                </label>
+
+                <label>
+                    <span>Número de Mesa (*)</span>
+                    <input type="text" id="tableNumber" name="TableNumber" class="tableNumber" pattern="^[1-9]$|^[1][0-9]$|^30$" title="Ingrese un número de mesa entre 1 y 20" required>
+                </label>
+
+                <label>
+                    <span>Cantidad de Comensales (*)</span>
+                    <input type="text" id="guestsAmount" name="GuestsAmount" class="guestsAmount" pattern="^[1-9]$|^[1][0-9]$|^20$" title="El mínimo de comensales es 1, y el máximo 20." required/>
+                </label>
+
+                <label>
+                    <span>Observaciones </span>
+                    <input type="text" id="observations" name="Observations" class="observations" maxlength="150"/>
+                </label>
+
+                <div class="contactInfo">
+
+                    <div class="firstName">
+                        <label>Nombre (*)</label>
+                        <input type="text" id="fName" name="FirstName" class="fName" maxlength="60" required/>
+                    </div>
+
+                    <div class="lastName">
+                        <label>Apellido (*)</label>
+                        <input type="text" id="lName" name="LastName" class="lName" maxlength="100" required/>
+                    </div>
+
+                    <div class="phoneNumber">
+                        <label>Número de Teléfono (*)</label>
+                        <input type="text" id="pNumber" name="PhoneNumber" class="lName" maxlength="20" required title="Por favor ingrese un número de teléfono válido"/>
+                    </div>
+
+                    <div class="mailAddress">
+                        <label>Dirección de Correo Electrónico (*)</label>
+                        <input type="text" id="mailAddr" name="EMail" class="mailAddr" maxlength="100" pattern="^[a-zA-Z0-9._+-]+@("@")[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="Por favor ingrese una dirección de correo electrónico, por ejemplo: juan@casa.org" required />
+                    </div>
+
+                   <div id="requirementsLabel">
+                       <label>(*) - Campo obligatorio</label>
+                   </div>
+
+                </div>
+
+                <div class="submitReservation">
+                    <button type="submit" id="submitReservationButton">Crear Reserva</button>
+                </div>
+            </form>
+            }
+
+
+        </div>
+    </div>
+
+</body>
